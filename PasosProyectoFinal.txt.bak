@@ -1,0 +1,129 @@
+/*Creo el directorio ppal*/
+C:\DjangoProyectoFinal
+
+/*Entro con gitbash, si no estoy ahi me posiciono*/
+cd C:\DjangoProyectoFinal
+
+/*Creo el entorno*/
+python -m venv mientorno
+
+/*Activo el entorno*/
+source mientorno/scripts/activate
+
+/*Instalo Django*/
+pip install Django==3.2.18
+
+/*Creo el .gitignore
+Al mismo nivel que el directorio del entorno
+que va lo busco de la web
+https://www.toptal.com/developers/gitignore/
+Pongo que cree para:
+python django
+
+Lo vamos a usar en el directorio del proyecto
+*/
+
+
+/*Activamos el git*/
+git init
+
+/*Creamos el proyecto django*/
+django-admin startproject "proyecto_23319_grp_6"
+
+
+/*Entramos al visual studio code desde la carpeta del proyecto*/
+cd proyecto_23319_grp_6
+
+code .
+
+/*A setting.py le cambie, el codigo del lenguaje */
+LANGUAGE_CODE = 'es-ar'
+
+/*Ya podemos levantar el servidor*/
+python manage.py runserver
+
+/*Asi lo levanto en el puerto 5000*/
+python manage.py runserver 5000
+
+
+/*Creo el archivo  requirements.txt en el proyecto */
+pip freeze > requirements.txt
+
+
+/* Cuando otra persona del equipo debe instalar las librerias del requirements.txt debe hacer esto*/
+pip install -r requirements.txt
+
+/*cambiar el edito de terminal*/
+F1 - Terminal seleccionar perfir predeterminado
+Seleccionar gitbash
+
+
+/* Para poder gestionar las variables de entorno se instala esto*/
+pip install django-environ
+
+/*Al instalar una nueva libreria debo actualizar requeriments.txt
+pip freeze > requeriments.txt
+ */
+ 
+ /*genera el archivo .env en __pycache__*/
+ 
+ Creo en el archivo la variable: (y copio el contenido de settings.py la variable SECRET_KEY sin la comilla
+ SECRET_KEY
+ 
+ /*En el settings.py importo la libria environ, abajo de from pathlib import Path*/
+ import environ 
+ 
+ /*abajo escribo esto*/
+ env = environ.Env()
+ environ.Env.read_env()
+ 
+ /*Ahora puedo usar la variable de entorno*/
+ # SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = env('SECRET_KEY')
+
+
+/*Tambien creamos al mismo nivel de .env un archivo .env_example donde se indica que variables de entorno se estan usando para los nuevos programadores*/
+
+
+/*Hariamos dos aplicaciones*/
+1. privada, para dar de alta usuarios clasificacon productos
+2. publica, que acceede el usuario, pagina inicio, productos disponibles, poder comprar
+
+/* Para crear la parte publica hacemos */
+python manage.py startapp publica
+
+
+/*Una vez que lo cargamos lo debemos registrar en settings.py*/
+en INSTALLED_APPS = 
+  'publica',
+  
+  
+/*Modificamos view.py con esto*/  
+from django.shortcuts import render
+from django.http import HttpResponse
+
+# Create your views here.
+def hola_mundo(request):
+    return HttpResponse('Hola Mundo django')
+	
+/*Cada aplicacion debe tener un archivo urls.py, asi que lo creamos en la aplicacion publica
+Importamos la views asi podemos usar el metodo hola_mundo
+*/	
+from django.shortcuts import render
+from django.http import HttpResponse
+from . import views
+
+# Create your views here.
+def hola_mundo(request):
+    return HttpResponse('Hola Mundo django', views.hola_mundo, name='hola')
+
+/*En la URL del proyecto debo agregar la nueva ruta de la nueva aplicacion
+en al url generar le agrego la siguiente linea
+*/
+from django.urls.conf import include
+
+/* y en urlpattner agrego esto*/ 
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('public.urls')),
+]
