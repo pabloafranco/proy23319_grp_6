@@ -117,6 +117,15 @@ from . import views
 def hola_mundo(request):
     return HttpResponse('Hola Mundo django', views.hola_mundo, name='hola')
 
+/* en la url de la apliacion agregot esto */
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('hola_mundo/', views.hola_mundo, name='hola' ),
+]
+
+
 /*En la URL del proyecto debo agregar la nueva ruta de la nueva aplicacion
 en al url generar le agrego la siguiente linea
 */

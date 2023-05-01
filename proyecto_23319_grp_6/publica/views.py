@@ -1,111 +1,31 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.template import loader
-
 from datetime import datetime
+from . import views
 
 # Create your views here.
-def index(request):    
-    listado_cursos = [
-             {
-            'nombre':'Cocina',
-            'descripcion':'Electrica 4 hornallas',
-            'categoria':'Articulos del Hogar',
-        },
-        {
-            'nombre':'Notebook',
-            'descripcion':'EXO Smart L33E gris 14',
-            'categoria':'Electronica',
-        },
-        {
-            'nombre':'Multigimnasio',
-            'descripcion':'Multigim Musculación Gimnasio Olmo ',
-            'categoria':'Fitness',
-        },
-        {
-            'nombre':'E-reader',
-            'descripcion':'Amazon Kindle 2022',
-            'categoria':'Tablets y accesorios',
-        },
-    ]
+def home(request):
+    return render (request,'publica/home/home.html')
+def login(request):
 
-    context = {                
-                'cursos':listado_cursos
-            }
-    return render(request,'publica/index.html',context)
+    return render (request,'publica/login/login.html')
+def formLogin(request):
 
-def quienes_somos(request):
-    template = loader.get_template('publica/quienes_somos.html')
-    context = {'titulo':'Codo A Codo - Quienes Somos'}
-    return HttpResponse(template.render(context,request))
+    return render (request,'publica/login/formLogin.html')
+# con parametro en la uri
+def homeLogIn(request, idUser):
+    return HttpResponse(f"""Proyecto <h1>Django Home  Login {idUser} <h1>""")
+# con metodo get
+def detailProduct(request):
+    method='paso por get'
+    titulo='pagina de detalle de productos'
+    fecha=datetime.now
+    return render(request,'publica/home/products.html',{
+        'titulo':titulo,
+        'fecha':fecha,
+        'method':method
+    })
+# con metodo post
+# def saveUser(request):
+#     return HttpResponse(f"""Proyecto <h1>Django pruducto detalle  <h1>""")
 
-#NO USAR
-def hola_mundo(request):
-    return HttpResponse('Hola Mundo Django 🦄')
-
-def index_old(request):
-    if(request.method=='GET'):
-        titulo = 'Titulo cuando accedo por GET'
-    else:
-        titulo = 'Titulo cuando accedo por otro metodo'
-    parametro_uno = request.GET.get('param')
-    parametro_dos = request.GET.get('param2')
-    listado_cursos = [
-   
-        {
-            'nombre':'Fullstack Java',
-            'descripcion':'Curso de Fullstack',
-            'categoria':'Programación',
-        },
-        {
-            'nombre':'Diseño UX/UI',
-            'descripcion':'🖌🎨',
-            'categoria':'Diseño',
-        },
-        {
-            'nombre':'Big Data',
-            'descripcion':'test',
-            'categoria':'Análisis de Datos',
-        },
-        {
-            'nombre':'Big Data Avanzado',
-            'descripcion':'test',
-            'categoria':'Análisis de Datos',
-        },
-    ]
-
-    context = {'titulo':titulo,
-                'parametro_uno':parametro_uno,
-                'hoy':datetime.now(),
-                'cursos':listado_cursos
-            }
-    return render(request,'publica/index.html',context)
-    # return HttpResponse(f"""<h1>PROYECTO DJANGO - CODO A CODO</h1>
-    #             <p>{titulo}</p>   
-    #             <p>Param recibido: {parametro_uno}</p>                
-    #             <p>Param2 recibido: {parametro_dos}</p>                
-    #         """)
-
-def saludar(request,nombre):
-    return HttpResponse(f"""
-        <h1>Hola {nombre}</h1>
-        <p>Estoy haciendo una prueba</p>
-    """)
-
-def ver_proyectos(request,anio,mes):
-    return HttpResponse(f"""
-        <h1>Proyectos del - {mes}/{anio}</h1>
-        <p>Listado de proyectos</p>
-    """)
-
-def ver_proyectos_uno(request,anio,mes=1):
-    return HttpResponse(f"""
-        <h1>Por defecto Proyectos del - {mes}/{anio}</h1>
-        <p>Listado de proyectos</p>
-    """)
-
-def ver_proyectos_04_2023(request,):
-    return HttpResponse(f"""
-        <h1>Proyectos del mes de abril año 2023</h1>
-        <p>Listado de proyectos</p>
-    """)
