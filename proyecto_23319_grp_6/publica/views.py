@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from datetime import datetime
 from publica.forms import VenderProductoform
 from publica.forms import Ingresarform
+from publica.forms import Registrarform
 
 from . import views
 
@@ -101,3 +102,25 @@ def ingresarView(request):
     return render(request, 'publica/home/login.html', { 
                             'form': form,
     })    
+    
+def formLogin(request):    
+    
+    #if request.user.is_authenticated:
+    #    return redirect('index')
+    
+    form = Registrarform(request.POST or None)
+    
+    if request.method=='POST' and form.is_valid():
+        
+        
+        #user = form.save()
+        user="OK"
+        
+        if user:
+            #login(request,user)
+            messages.success(request,'Usuario creado exitosamente')
+            return redirect('detailProduct')
+    
+    return render(request, 'publica/login/formlogin.html', { 
+                            'form': form,
+    })        

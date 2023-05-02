@@ -72,3 +72,81 @@ class Ingresarform(forms.Form):
                                             'id': 'password',
                                             'placeholder': 'Password'}))
 
+
+            
+class Registrarform(forms.Form):
+    username=forms.CharField(required=True, min_length=4, max_length=50, 
+                             label='Usuario', 
+                             widget=forms.TextInput(attrs={'class': 'form-control',
+                                                           'id': 'username'}))
+    email=forms.EmailField(required=True, 
+                            label='Email', 
+                            widget=forms.EmailInput(attrs={'class': 'form-control',
+                                                           'id': 'email',
+                                                           'placeholder': 'example@example.com'}))
+    password=forms.CharField(required=True,
+                             label='Clave',  
+                             widget=forms.PasswordInput(attrs={'class': 'form-control',
+                                                           'id': 'password',
+                                                           'placeholder': 'Password'}))
+
+    password2=forms.CharField(required=True,
+                            label='Repetir clave', 
+                            widget=forms.PasswordInput(attrs={'class': 'form-control',
+                                                           'id': 'password2',
+                                                           'placeholder': 'Password'}))
+    direccion1=forms.CharField(required=True, min_length=4, max_length=50, 
+                            label='Direccion 1', 
+                            widget=forms.TextInput(attrs={'class': 'form-control',
+                                                           'id': 'direccion1'}))
+
+    direccion2=forms.CharField(required=False, max_length=50, 
+                            label='Direccion 2',  
+                            widget=forms.TextInput(attrs={'class': 'form-control',
+                                                           'id': 'direccion2'}))
+
+    provincia=forms.CharField(required=False, max_length=50, 
+                            label='Provincia', 
+                            widget=forms.TextInput(attrs={'class': 'form-control',
+                                                           'id': 'provincia'}))
+
+    ciudad=forms.CharField(required=False, max_length=50, 
+                            label='Ciudad', 
+                            widget=forms.TextInput(attrs={'class': 'form-control',
+                                                           'id': 'ciudad'}))
+    cp=forms.CharField(required=False, max_length=50, 
+                            label='Codigo Potal', 
+                            widget=forms.TextInput(attrs={'class': 'form-control',
+                                                           'id': 'codigopostal'}))
+
+    def clean_username(self):
+        username = self.cleaned_data['username']
+        
+        #if User.objects.filter(username=username).exists():
+        #    raise forms.ValidationError('Username ya se encuentra en uso')
+        
+        return username
+        
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        
+       # if User.objects.filter(email=email).exists():
+       #     raise forms.ValidationError('Email ya se encuentra en uso')
+        
+        return email
+    
+    def clean(self):
+        cleaned_data=super().clean()
+        
+        print (cleaned_data.get('password') )
+        print (cleaned_data.get('password2') )
+        if cleaned_data.get('password') != self.cleaned_data.get('password2') :
+            self.add_error('password2', 'El password no coincide')
+                        
+    def save(self):
+        pass
+        #return User.objects.create_user(
+        #    self.cleaned_data.get('username'),
+        ##    self.cleaned_data.get('email'),
+        #    self.cleaned_data.get('password'),
+        
