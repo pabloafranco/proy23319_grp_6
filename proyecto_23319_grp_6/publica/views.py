@@ -95,7 +95,7 @@ def ingresarView(request):
         
         if user:
             #login(request,user)
-            messages.success(request,'Producto creado exitosamente')
+            messages.success(request,'Usuario creado exitosamente')
             return redirect('detailProduct')
     
     return render(request, 'publica/home/login.html', { 

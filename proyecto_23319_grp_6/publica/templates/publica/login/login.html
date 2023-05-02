@@ -4,7 +4,7 @@
  <div class="container">
     <div class="bg-dark ">    
           <div class="text-center text-white">
-              <h1 class="display-6 fw">Login</h1>         
+              <h1 class="display-6 fw">Ingresar</h1>         
           </div>
       
   </div>
@@ -22,17 +22,16 @@
               <form  method="post">
                 {% csrf_token %}
                 <div class="form-group">
-                    <label for="username">Username:</label>
+                    <label for="username">Usuario:</label>
                     <input type="text" name="username" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="password">Password:</label>
+                    <label for="password">Clave:</label>
                     <input type="password" name="password" class="form-control">
                 </div>
+                <br>
                 <button type="submit" class="btn btn-primary">Login</button>
-                            
       
-                <p class="small mb-5 pb-lg-2"><a class="text-muted" href="#!">Olvido la clave?</a></p>
                 <p>No tiene una cuenta? <a href="{% url 'formLogin' %}" class="link-info">Registrar aqui</a></p>
                
                 </form>
