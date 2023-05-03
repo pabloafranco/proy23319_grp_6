@@ -27,20 +27,22 @@ class VenderProductoform(forms.Form):
             max_length=50,
             widget=forms.TextInput(
                     attrs={'class':'form-control',
-                        'placeholder':'Descripcion'}
+                        'placeholder':'Titulo'}
                     )
         )
     descripcion = forms.CharField(
         label='Descripción',
         max_length=500,
-        widget=forms.Textarea(attrs={'rows': 5,'class':'form-control'})
+        widget=forms.Textarea(attrs={'rows': 5,
+                                     'class':'form-control',
+                                     'placeholder':'Descripción'})
         
     )
     nombreFoto = forms.CharField(
         label='Nombre de la foto',
         max_length=100,
         widget=forms.TextInput( attrs={'class':'form-control',
-                        'placeholder':'Descripcion'})
+                        'placeholder':'Nombre de la Foto'})
     )
     precio = forms.IntegerField(
         label='Precio'
