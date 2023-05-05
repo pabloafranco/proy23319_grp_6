@@ -1,5 +1,9 @@
+pgAdmin (Dar de alta las bases)
+
 /*Creo el directorio ppal*/
 C:\DjangoProyectoFinal
+
+/c/DjangoProyectoFinal/proyecto_23319_grp_6
 
 /*Entro con gitbash, si no estoy ahi me posiciono*/
 cd C:\DjangoProyectoFinal
@@ -136,3 +140,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('public.urls')),
 ]
+
+
+
+https://docs.google.com/spreadsheets/d/1Bnl12NTwOh70Zojz57EISNmoZBpXK_pZlkptfwMpfEY/edit#gid=649296349

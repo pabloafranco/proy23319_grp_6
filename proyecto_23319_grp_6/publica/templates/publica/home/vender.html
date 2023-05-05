@@ -1,0 +1,82 @@
+{% extends '../index.html' %}
+{% block content %}
+ <!-- Header-->
+ <div class="container">
+    <div class="bg-dark ">    
+          <div class="text-center text-white">
+              <h1 class="display-6 fw">{{titulo}}</h1>         
+          </div>
+      
+  </div>
+<!-- Section-->
+
+<section class="mb-4 container">
+
+    <!--Section heading-->
+    <div class="bg-dark ">    
+        <div class="text-center text-white">
+            <h1 class="display-6 fw">Alta de Productos</h1>         
+        </div>
+    
+    </div>
+    <!--Section description-->
+    
+    <div class="row">
+
+    <!--Grid column-->
+        <div class="col-md-6 mb-md-0 mb-6">
+            
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" role="alert">
+                    {{message}}
+                </div>
+            {% endfor %}
+            <form id="VenderProductoform" name="VenderProductoform" action="{% url 'venderView' %}" method="POST" novalidate>
+                {% csrf_token %}
+                {% comment %} {{ contacto_form }} {% endcomment %}
+                
+                {% comment %} <table>
+                    {{ contacto_form.as_table }}
+                </table> {% endcomment %}
+
+                {% comment %} <ul>
+                    {{ contacto_form.as_ul }}
+                </ul> {% endcomment %}
+
+                {% comment %} {{ contacto_form.as_p }} {% endcomment %}
+                <div class="row">
+                    {% for campo in form %}
+                        <!--Grid column-->
+                        <div class="col-md-12">
+                            <div class="md-form mb-0">
+                                <label for="name" class="form-label text-white">{{ campo.label }}</label>
+                                {{campo}}
+                                {% comment %} 
+                                {% if campo.field.widget.input_type == 'checkbox' %}
+                                    {{campo}} 
+                                    <label for="name" class="">{{ campo.label }}</label>
+                                {% else %}
+                                    <label for="name" class="">{{ campo.label }}</label>
+                                    {{campo}}
+                                {% endif %} {% endcomment %}
+                            </div>
+                            <div >{{campo.errors}}</div>
+                        </div>
+                        <!--Grid column-->
+                    {% endfor %}
+                </div>
+                <div class="text-center text-md-left mt-3">
+                    <button class="btn btn-primary" type="submit">Enviar</button>
+                </div>
+            </form>
+            <div class="status"></div>
+        </div>
+    <!--Grid column-->
+
+        <!--Grid column-->
+        <!--Grid column-->
+    </div>
+</section>
+
+
+{% endblock %}
