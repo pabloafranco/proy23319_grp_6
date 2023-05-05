@@ -1,3 +1,5 @@
+pgAdmin (Dar de alta las bases)
+
 /*Creo el directorio ppal*/
 C:\DjangoProyectoFinal
 
@@ -140,3 +142,5 @@ urlpatterns = [
 ]
 
 
+
+https://docs.google.com/spreadsheets/d/1Bnl12NTwOh70Zojz57EISNmoZBpXK_pZlkptfwMpfEY/edit#gid=649296349

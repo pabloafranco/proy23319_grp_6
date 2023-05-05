@@ -1,6 +1,8 @@
 /*Creo el directorio ppal*/
 C:\DjangoProyectoFinal
 
+/c/DjangoProyectoFinal/proyecto_23319_grp_6
+
 /*Entro con gitbash, si no estoy ahi me posiciono*/
 cd C:\DjangoProyectoFinal
 
@@ -136,3 +138,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('public.urls')),
 ]
+
+
