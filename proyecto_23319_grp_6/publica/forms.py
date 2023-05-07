@@ -1,3 +1,5 @@
+from django.contrib.auth.models import User
+
 from django import forms
 from django.forms import ValidationError
 import re
@@ -135,31 +137,29 @@ class Registrarform(forms.Form):
     def clean_username(self):
         username = self.cleaned_data['username']
         
-        #if User.objects.filter(username=username).exists():
-        #    raise forms.ValidationError('Username ya se encuentra en uso')
+        if User.objects.filter(username=username).exists():
+           raise forms.ValidationError('Username ya se encuentra en uso')
         
         return username
         
     def clean_email(self):
         email = self.cleaned_data['email']
         
-       # if User.objects.filter(email=email).exists():
-       #     raise forms.ValidationError('Email ya se encuentra en uso')
+        if User.objects.filter(email=email).exists():
+           raise forms.ValidationError('Email ya se encuentra en uso')
         
         return email
     
     def clean(self):
-        cleaned_data=super().clean()
+        cleaned_data=super().clean()  #Ejecutamos la clase clear de quien heredamos en este claso la clase Form
         
-        print (cleaned_data.get('password') )
-        print (cleaned_data.get('password2') )
         if cleaned_data.get('password') != self.cleaned_data.get('password2') :
-            self.add_error('password2', 'El password no coincide')
+            self.add_error('password2', 'El password no coincide')  #Indicamos a que campo va el error, y el error
                         
     def save(self):
-        pass
-        #return User.objects.create_user(
-        #    self.cleaned_data.get('username'),
-        ##    self.cleaned_data.get('email'),
-        #    self.cleaned_data.get('password'),
-        
+        #En la clase hacemos la grabacion
+        return User.objects.create_user(
+            self.cleaned_data.get('username'),
+            self.cleaned_data.get('email'),
+            self.cleaned_data.get('password'),
+        )

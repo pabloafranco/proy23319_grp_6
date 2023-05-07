@@ -37,15 +37,6 @@
                 {% csrf_token %}
                 {% comment %} {{ contacto_form }} {% endcomment %}
                 
-                {% comment %} <table>
-                    {{ contacto_form.as_table }}
-                </table> {% endcomment %}
-
-                {% comment %} <ul>
-                    {{ contacto_form.as_ul }}
-                </ul> {% endcomment %}
-
-                {% comment %} {{ contacto_form.as_p }} {% endcomment %}
                 <div class="row">
                     {% for campo in form %}
                         <!--Grid column-->
@@ -56,13 +47,15 @@
                                 {% comment %} 
                                 {% if campo.field.widget.input_type == 'checkbox' %}
                                     {{campo}} 
-                                    <label for="name" class="">{{ campo.label }}</label>
+                                        <label for="name" class="">{{ campo.label }}</label>
                                 {% else %}
                                     <label for="name" class="">{{ campo.label }}</label>
                                     {{campo}}
                                 {% endif %} {% endcomment %}
                             </div>
-                            <div >{{campo.errors}}</div>
+                            {% if campo.errors %}
+                                <div class="text-danger">{{campo.errors}}</div>
+                            {%endif%}
                         </div>
                         <!--Grid column-->
                     {% endfor %}

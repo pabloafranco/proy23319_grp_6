@@ -9,15 +9,27 @@
       
   </div>
 <div class="container">
+    
     <section class="vh-100">
         <div class="container-fluid">
          <div class="row text-center text-white">
             <div class="col-sm-6 text-black">
       
-          
+              <!--
+              {% if messages %}
+              {% for message in messages %}
+               <div class="alert {% if message.tags == 'success'%}alert-success{%else%}alert-danger{%endif%}">
+                 
+                 {{message}}
+                 <button type="button" class="close" data-dismiss="alert">x</button>
+               </div>
+              {% endfor %}
+
+            {% endif %}
+              -->
+            <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
       
-              <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
-      
+                
               <!--Formulario-->
               <form  method="post">
                 {% csrf_token %}
@@ -48,5 +60,5 @@
       </section>
       
   </div>
-
+  
 {% endblock %}
