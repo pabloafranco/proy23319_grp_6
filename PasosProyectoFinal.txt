@@ -144,3 +144,22 @@ urlpatterns = [
 
 
 https://docs.google.com/spreadsheets/d/1Bnl12NTwOh70Zojz57EISNmoZBpXK_pZlkptfwMpfEY/edit#gid=649296349
+
+
+13/05/2023
+/*Genero una nueva aplicacion de productos*/
+python manage.py  startapp productos
+
+/*Registro la aplicacion en settings*/
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'publica',
+    'administracion',
+    'productos',
+]

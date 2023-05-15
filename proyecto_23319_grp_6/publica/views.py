@@ -20,6 +20,10 @@ def home(request):
     return render (request,'publica/home/home.html')
 
 def login_view(request):
+    #Si el usuario ya esta autenticado no lo dejo entrar
+    if request.user.is_authenticated:
+        return redirect('detailProduct')
+    
     if request.method=="POST":
         username = request.POST.get('username')  #POST es un diccionario
         password = request.POST.get('password')  # Si no encuentra valor retorna None, con '', se puede poner un valor por default
@@ -130,9 +134,10 @@ def ingresarView(request):
 """        
 def formLogin(request):    
     
-    #if request.user.is_authenticated:
-    #    return redirect('index')
-    
+    #Si el usuario ya esta autenticado no lo dejo entrar
+    if request.user.is_authenticated:
+        return redirect('detailProduct')
+        
     form = Registrarform(request.POST or None)
     
     if request.method=='POST' and form.is_valid():
