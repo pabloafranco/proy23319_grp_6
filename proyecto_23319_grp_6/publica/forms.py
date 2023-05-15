@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+# from ../../models import Persona
 
 from django import forms
 from django.forms import ValidationError
@@ -86,12 +87,7 @@ class Ingresarform(forms.Form):
 
             
 class Registrarform(forms.Form):
-    TIPO_USUARIO = (
-        ('','-Seleccione-'),
-        ('V','Vendedor'),
-        ('C','Comprador'),
-        ('A','Ambos')
-    )
+
     
     username=forms.CharField(required=True, min_length=4, max_length=50, 
                              label='Usuario', 
@@ -102,11 +98,6 @@ class Registrarform(forms.Form):
                             widget=forms.EmailInput(attrs={'class': 'form-control',
                                                            'id': 'email',
                                                            'placeholder': 'example@example.com'}))
-    tipo_usuario = forms.ChoiceField(
-        label='Tipo de usuario',
-        choices=TIPO_USUARIO,
-        widget=forms.Select(attrs={'class':'form-control'})
-    )
 
     password=forms.CharField(required=True,
                              label='Clave',  
@@ -119,17 +110,17 @@ class Registrarform(forms.Form):
                             widget=forms.PasswordInput(attrs={'class': 'form-control',
                                                            'id': 'password2',
                                                            'placeholder': 'Password'}))
-    direccion1=forms.CharField(required=True, min_length=4, max_length=50, 
+    calle=forms.CharField(required=True, min_length=4, max_length=50, 
                             label='Direccion', 
                             widget=forms.TextInput(attrs={'class': 'form-control',
-                                                           'id': 'direccion1'}))
+                                                           'id': 'direccion'}))
 
     provincia=forms.CharField(required=False, max_length=50, 
                             label='Provincia', 
                             widget=forms.TextInput(attrs={'class': 'form-control',
                                                            'id': 'provincia'}))
 
-    cp=forms.CharField(required=False, max_length=50, 
+    codigo_postal=forms.CharField(required=False, max_length=50, 
                             label='Codigo Potal', 
                             widget=forms.TextInput(attrs={'class': 'form-control',
                                                            'id': 'codigopostal'}))
@@ -158,6 +149,9 @@ class Registrarform(forms.Form):
                         
     def save(self):
         #En la clase hacemos la grabacion
+        
+        
+        
         return User.objects.create_user(
             self.cleaned_data.get('username'),
             self.cleaned_data.get('email'),
