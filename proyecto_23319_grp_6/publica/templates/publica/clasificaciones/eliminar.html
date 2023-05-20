@@ -1,0 +1,22 @@
+{% extends '../index.html' %}
+
+{% block titulo %}Eliminar clasificacion{% endblock%}
+
+{% block content %}
+<h1 class="mt-4">Clasificacion productos</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Eliminar Clasificacion</li>
+</ol>
+
+
+<div class="card">
+    <div class="card-header">Eliminacion de categoría</div>
+    <div class="card-body">
+        <form method="post">{% csrf_token %}
+            <p>Esta seguro que quiere eliminar la clasificacion "{{ object.nombre }}"?</p>
+            <input type="submit" value="Confirmar" class="btn btn-danger">
+        </form>
+        
+    </div>
+</div>
+{% endblock %}

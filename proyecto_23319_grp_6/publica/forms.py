@@ -157,3 +157,51 @@ class Registrarform(forms.Form):
             self.cleaned_data.get('email'),
             self.cleaned_data.get('password'),
         )
+        
+        
+        
+from django import forms
+
+from administracion.models import Producto, Clasificacion
+
+class ProductoForm(forms.ModelForm):
+    # nombre = forms.CharField(error_messages={'required':'Hello! no te olvide de mi!'})
+
+    #fields='__all__'
+    #fields=['nombre']
+    #exclude=('baja',)
+    ESTADO_CHOICES = (
+        ('','-Seleccione-'),
+        ('A','Activo'),
+        ('I','Inactivo'),
+        ('P','Pausado'),
+    )
+    
+    desc_producto=forms.CharField(
+            label='Descripción',           
+            widget=forms.Textarea(attrs={'rows': 5,'class':'form-control'})
+        )
+    
+   
+    """Se utiliza ModelChoiceField para poder realizar un filtrado de lo que
+    quiero mostrar en el selector"""
+    clasificacion = forms.ModelChoiceField(
+        queryset=Clasificacion.objects.all(),
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
+    foto = forms.ImageField(
+        widget=forms.FileInput(attrs={'class':'form-control'})
+    )
+
+    estado = forms.ChoiceField(
+        label='Estado',
+        choices=ESTADO_CHOICES,
+        widget=forms.Select(attrs={'class':'form-control'})
+    )
+    
+        
+    class Meta:
+        model=Producto
+        fields=['desc_producto','foto','clasificacion', 'estado']
+
+            

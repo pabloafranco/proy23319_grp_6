@@ -1,3 +1,6 @@
+import pdb
+
+from typing import Any, Dict
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.shortcuts import render
@@ -12,6 +15,12 @@ from django.contrib.auth import logout
 from django.contrib.auth import authenticate
 
 from django.contrib.auth.models import User
+
+
+from administracion.models import Producto, Clasificacion
+from .forms import ProductoForm
+# Create your views here.
+
 
 from . import views
 
@@ -74,6 +83,8 @@ def detailProduct(request):
             'categoria':'Tecnologia',
         },
     ]
+    listado_cursos = Producto.objects.all()
+    
     method='paso por get'
     titulo='Pagina de detalle de productos'
     fecha=datetime.now
@@ -167,4 +178,131 @@ def logout_view(request):
     logout(request)
     messages.success(request, "Sesion cerrada existosamente")
     return redirect('login')
+    
+    
+
+def productos_index(request):
+    productos = Producto.objects.all()
+    return render(request,'publica/productos/index.html',{'productos':productos})    
+
+def productos_nuevo(request):
+    #pdb.set_trace() ## Punto de ruptura
+    if(request.method=='POST'):
+        #user=User.objects.get(pk=1)
+        # formulario = ProductoForm(request.POST or None,request.FILES or None, instance=user) #
+        formulario = ProductoForm(request.POST or None,request.FILES or None) #
+        
+        if formulario.is_valid():
+            form = formulario.save(commit=False)
+            form.persona_id = 1
+            form.save()
+            return redirect('productos_index')
+        else:
+            messages.success(request,'NO PASO LA VALIDACION')
+    else:
+        formulario = ProductoForm()
+    return render(request,'publica/productos/nuevo.html',{'formulario':formulario})
+
+def productos_editar(request,id):
+    try:
+        producto = Producto.objects.get(pk=id)
+    except Producto.DoesNotExist:
+        return render(request,'administracion/404_admin.html')
+
+    if(request.method=='POST'):
+        formulario = ProductoForm(request.POST,instance=producto)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect('categorias_index')
+    else:
+        formulario = ProductoForm(instance=producto)
+    return render(request,'administracion/categorias/editar.html',{'form':formulario})
+
+def productos_eliminar(request,id_producto):
+    try:
+        producto = Producto.objects.get(pk=id)
+    except Producto.DoesNotExist:
+        return render(request,'administracion/404_admin.html')
+    producto.delete()
+    return redirect('categorias_index')
+    
+    
+    
+from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views.generic import ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
+from administracion.models import Clasificacion
+from django.http import HttpResponseRedirect
+
+from django.shortcuts import get_object_or_404
+from django.contrib import messages
+
+from administracion.forms import ClasificacionForm
+# Create your views here.
+def index_administracion(request):
+    variable = 'test variable'
+    return render(request,'administracion/index_administracion.html',{'variable':variable})
+
+
+
+"""
+    IMPLEMENTACION DE CRUD DE Clasificacion POR MEDIO DE VISTAS BASADAS EN CLASES (VBC)
+"""
+class ClasificacionListView(ListView):
+    model = Clasificacion
+    context_object_name = 'Clasificacion'
+    template_name= 'publica/Clasificaciones/index.html'
+    queryset= Clasificacion.objects.all()
+    ordering = ['desc_clasificacion']
+    
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context['message'] = "Listado de clasificaciones"
+        context['clasificaciones'] = context['object_list']
+        return context
+
+class ClasificacionCreateView(CreateView):
+    model = Clasificacion
+    # fields = ['nombre']
+    form_class = ClasificacionForm
+    template_name = 'publica/Clasificaciones/nuevo.html'
+    success_url = reverse_lazy('clasificaciones_index_view')
+    
+    # def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+    #     context = super().get_context_data(**kwargs)
+    #     print(context)
+    #     context['message'] = "Listado de clasificaciones"
+    #     context['clasificaciones'] = context['object_list']
+    #     return context
+
+class ClasificacionUpdateView(UpdateView):
+    model = Clasificacion
+    fields = ['desc_clasificacion']
+    # form_class = ClasificacionForm
+    template_name = 'publica/Clasificaciones/editar.html'
+    success_url = reverse_lazy('clasificaciones_index_view')
+
+    def get_object(self, queryset=None):
+        pk = self.kwargs.get(self.pk_url_kwarg)
+        obj = get_object_or_404(Clasificacion, pk=pk)
+        return obj
+    
+class ClasificacionDeleteView(DeleteView):
+    model = Clasificacion
+    template_name = 'publica/Clasificaciones/eliminar.html'
+    success_url = reverse_lazy('clasificaciones_index_view')
+    
+    def get_object(self, queryset=None):
+        pk = self.kwargs.get(self.pk_url_kwarg)
+        obj = get_object_or_404(Clasificacion, pk=pk)
+        return obj
+    
+    #se puede sobreescribir el metodo delete por defecto de la VBC, para que no se realice una baja fisica
+    """  def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.soft_delete()  # Llamada al método soft_delete() del modelo
+        return HttpResponseRedirect(self.get_success_url()) """
+    
     

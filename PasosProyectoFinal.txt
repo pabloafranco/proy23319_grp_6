@@ -163,3 +163,10 @@ INSTALLED_APPS = [
     'administracion',
     'productos',
 ]
+
+/*Si quisiera que Admin administre mis productos debo hacer */
+en admin.py
+
+from .models import Product
+
+admin.site.register(Product)

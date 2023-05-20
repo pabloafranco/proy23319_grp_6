@@ -1,0 +1,21 @@
+{% extends '../index.html' %}
+
+{% block titulo %}Nueva clasificacion{% endblock%}
+
+{% block content %}
+<h1 class="mt-4">Clasificaciones cursos</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Nueva Clasificaciones</li>
+</ol>
+
+
+<div class="card">
+    <div class="card-header">Creacion de clasificacion</div>
+    <div class="card-body">
+        <form action="{% url 'clasificaciones_nuevo_view' %}" method="post" novalidate>
+            {% csrf_token %}
+            {% include './form.html' %}
+        </form>
+    </div>
+</div>
+{% endblock %}
