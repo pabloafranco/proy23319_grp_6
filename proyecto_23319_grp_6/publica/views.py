@@ -162,12 +162,22 @@ def formLogin(request):
         provincia=form.cleaned_data.get('provincia')
         cp=form.cleaned_data.get('cp')
         
-     
+        print(f'request: {request}')
         user=form.save() #Llamamos al save de la clase!
         if user:
             #login(request,user)
             messages.success(request,'Usuario creado exitosamente')
             login(request,user)
+            
+            
+#            formulario = Registrarform(request.POST or None,request.FILES or None) #
+            
+            ## Le asigo el codigo del usuario autenticado!
+ #           formulario.user_id = request.user.id
+  #          formulario.save()
+            #Hago la grabacion del usuario
+            
+            
             return redirect('detailProduct')
     
     return render(request, 'publica/login/formlogin.html', { 
@@ -194,7 +204,9 @@ def productos_nuevo(request):
         
         if formulario.is_valid():
             form = formulario.save(commit=False)
-            form.persona_id = 1
+            
+            ## Le asigo el codigo del usuario autenticado!
+            form.persona_id = request.user.id
             form.save()
             return redirect('productos_index')
         else:
@@ -207,24 +219,24 @@ def productos_editar(request,id):
     try:
         producto = Producto.objects.get(pk=id)
     except Producto.DoesNotExist:
-        return render(request,'administracion/404_admin.html')
+        return render(request,'publica/productos//404_admin.html')
 
     if(request.method=='POST'):
         formulario = ProductoForm(request.POST,instance=producto)
         if formulario.is_valid():
             formulario.save()
-            return redirect('categorias_index')
+            return redirect('productos_index')
     else:
         formulario = ProductoForm(instance=producto)
-    return render(request,'administracion/categorias/editar.html',{'form':formulario})
+    return render(request,'publica/productos/editar.html',{'formulario':formulario})
 
 def productos_eliminar(request,id_producto):
     try:
         producto = Producto.objects.get(pk=id)
     except Producto.DoesNotExist:
-        return render(request,'administracion/404_admin.html')
+        return render(request,'publica/productos//404_admin.html')
     producto.delete()
-    return redirect('categorias_index')
+    return redirect('productos_index')
     
     
     

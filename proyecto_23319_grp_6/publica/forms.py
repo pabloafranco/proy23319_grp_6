@@ -87,8 +87,6 @@ class Ingresarform(forms.Form):
 
             
 class Registrarform(forms.Form):
-
-    
     username=forms.CharField(required=True, min_length=4, max_length=50, 
                              label='Usuario', 
                              widget=forms.TextInput(attrs={'class': 'form-control',
@@ -150,7 +148,7 @@ class Registrarform(forms.Form):
     def save(self):
         #En la clase hacemos la grabacion
         
-        
+        print(self)
         
         return User.objects.create_user(
             self.cleaned_data.get('username'),
@@ -182,6 +180,10 @@ class ProductoForm(forms.ModelForm):
             widget=forms.Textarea(attrs={'rows': 5,'class':'form-control'})
         )
     
+    precio =forms.IntegerField(
+            label='Precio',           
+            widget=forms.NumberInput(attrs={'min': '0', 'class': 'form-control'})
+        )
    
     """Se utiliza ModelChoiceField para poder realizar un filtrado de lo que
     quiero mostrar en el selector"""
@@ -202,6 +204,6 @@ class ProductoForm(forms.ModelForm):
         
     class Meta:
         model=Producto
-        fields=['desc_producto','foto','clasificacion', 'estado']
+        fields=['desc_producto','precio', 'foto','clasificacion', 'estado']
 
             

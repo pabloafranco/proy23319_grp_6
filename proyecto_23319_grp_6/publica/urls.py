@@ -15,8 +15,8 @@ urlpatterns = [
     
     path('productos/', views.productos_index,name='productos_index'),
     path('productos/nuevo/', views.productos_nuevo,name='productos_nuevo'),
-    path('productos/editar/<int:id_productos>', views.productos_editar,name='productos_editar'),
-    path('productos/eliminar/<int:id_productos>', views.productos_eliminar,name='productos_eliminar'),
+    path('productos/editar/<int:id>', views.productos_editar,name='productos_editar'),
+    path('productos/eliminar/<int:id>', views.productos_eliminar,name='productos_eliminar'),
 
     path('clasificacionview/', views.ClasificacionListView.as_view(), name='clasificaciones_index_view'),
     path('clasificacion/viewnuevo', views.ClasificacionCreateView.as_view(), name='clasificaciones_nuevo_view'),

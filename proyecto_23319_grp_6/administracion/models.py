@@ -53,7 +53,7 @@ class Producto(models.Model):
     persona = models.ForeignKey(Persona,on_delete=models.CASCADE)
     fecha_alta = models.DateField(auto_now_add=True,verbose_name='Fecha de alta')
     foto  = models.ImageField(upload_to='image/',null=True,verbose_name='Foto Producto')
-    
+    precio = models.PositiveIntegerField(verbose_name='Precio',null=True)
     
     def __str__(self):
         return f"{self.desc_producto}"
