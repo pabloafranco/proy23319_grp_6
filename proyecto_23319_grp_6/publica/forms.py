@@ -186,6 +186,10 @@ class ProductoForm(forms.ModelForm):
             label='Precio',           
             widget=forms.NumberInput(attrs={'min': '0', 'class': 'form-control'})
         )
+    titulo =forms.CharField(
+            label='Descripción',           
+            widget=forms.Textarea(attrs={'rows': 5,'class':'form-control'})
+        )
    
     """Se utiliza ModelChoiceField para poder realizar un filtrado de lo que
     quiero mostrar en el selector"""
@@ -207,6 +211,6 @@ class ProductoForm(forms.ModelForm):
         
     class Meta:
         model=Producto
-        fields=['desc_producto','precio', 'foto','clasificacion', 'estado']
+        fields=['titulo','desc_producto','precio', 'foto','clasificacion', 'estado']
 
             
