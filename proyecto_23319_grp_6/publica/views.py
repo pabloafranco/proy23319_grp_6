@@ -230,7 +230,7 @@ def productos_editar(request,id):
         formulario = ProductoForm(instance=producto)
     return render(request,'publica/productos/editar.html',{'formulario':formulario})
 
-def productos_eliminar(request,id_producto):
+def productos_eliminar(request,id):
     try:
         producto = Producto.objects.get(pk=id)
     except Producto.DoesNotExist:

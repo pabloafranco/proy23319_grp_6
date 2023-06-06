@@ -4,6 +4,12 @@ nina
 
 */
 
+
+* {
+    box-sizing: border-box
+    }
+  
+
 html { scroll-behavior: smooth; }
 
 body {
@@ -357,3 +363,26 @@ h2 { margin-top: 0; }
     .tm-drinks-nav > ul > li { margin-bottom: 10px; }
     .tm-drinks-nav > ul > li > a { display: block; }
 }
+
+
+  
+:root {
+--max: 18rem
+}
+
+body {
+margin: 0;
+padding: 0;
+min-height: 100%
+}
+
+.card {
+width: var(--max)
+}
+
+.card-img-top {
+width: 100%;
+max-width: var(--max);
+height: calc(var(--max));
+object-fit: cover;
+} 

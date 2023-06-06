@@ -160,10 +160,12 @@ class Registrarform(forms.Form):
         
 from django import forms
 
-from administracion.models import Producto, Clasificacion
+from administracion.models import Producto, Clasificacion, models
+
 
 class ProductoForm(forms.ModelForm):
     # nombre = forms.CharField(error_messages={'required':'Hello! no te olvide de mi!'})
+
 
     #fields='__all__'
     #fields=['nombre']
@@ -198,6 +200,7 @@ class ProductoForm(forms.ModelForm):
     estado = forms.ChoiceField(
         label='Estado',
         choices=ESTADO_CHOICES,
+        initial='A',
         widget=forms.Select(attrs={'class':'form-control'})
     )
     
