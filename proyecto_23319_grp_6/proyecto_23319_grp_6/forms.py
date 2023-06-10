@@ -1,6 +1,8 @@
 from django import forms
 
-from .models import Clasificacion
+
+from .models import Curso, Categoria
+
 
 class CategoriaForm(forms.ModelForm):
     # nombre = forms.CharField(error_messages={'required':'Hello! no te olvide de mi!'})

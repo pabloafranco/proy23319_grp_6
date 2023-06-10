@@ -19,7 +19,7 @@ class Persona(models.Model):
     foto = models.ImageField(upload_to='perfiles/',null=True,verbose_name='Foto Perfil')
     
     def __str__(self):
-        return f"{User.username}"
+        return f"{self.email}"
     
     #def soft_delete(self):
     #    self.baja=True
@@ -64,8 +64,9 @@ class Producto(models.Model):
 class Cab_Compras(models.Model):
     comprador = models.ForeignKey(Persona,on_delete=models.CASCADE)
     fecha_compra = models.DateField(auto_now_add=True,verbose_name='Fecha de alta')
-    
+
 class Det_Compras(models.Model):
+    cabecera = models.ForeignKey(Cab_Compras,on_delete=models.CASCADE)
     producto = models.ForeignKey(Producto,on_delete=models.CASCADE)
-    precio = models.DecimalField(decimal_places=2, max_digits=10, verbose_name='Precio')
+    precioFinal = models.DecimalField(decimal_places=2, max_digits=10, verbose_name='Precio')
     cantidad = models.IntegerField(verbose_name='Cantidad')
