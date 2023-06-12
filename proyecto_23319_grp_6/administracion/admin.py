@@ -87,7 +87,7 @@ sitio_admin.register(Cab_Compras, ComprasAdmin)
 # sitio_admin.register(Curso,CursoAdmin)
 # sitio_admin.register(Comision,ComisionAdmin)
 # sitio_admin.register(Usuario,UserAdmin)
-# sitio_admin.register(Group, GroupAdmin)
-# admin.site.register(Curso,CursoAdmin)
+sitio_admin.register(Group, GroupAdmin)
+#admin.site.register(Curso,CursoAdmin)
 
 

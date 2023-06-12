@@ -16,6 +16,8 @@ from django.contrib.auth import authenticate
 
 from django.contrib.auth.models import User
 
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import permission_required
 
 from administracion.models import Producto, Clasificacion
 from .forms import ProductoForm
@@ -253,6 +255,9 @@ from django.contrib import messages
 
 from administracion.forms import ClasificacionForm
 # Create your views here.
+
+@login_required
+@permission_required('inicio_administracion')
 def index_administracion(request):
     variable = 'test variable'
     return render(request,'administracion/index_administracion.html',{'variable':variable})
@@ -262,6 +267,7 @@ def index_administracion(request):
 """
     IMPLEMENTACION DE CRUD DE Clasificacion POR MEDIO DE VISTAS BASADAS EN CLASES (VBC)
 """
+
 class ClasificacionListView(ListView):
     model = Clasificacion
     context_object_name = 'Clasificacion'
