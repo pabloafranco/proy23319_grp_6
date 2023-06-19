@@ -1,4 +1,6 @@
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
+from users.models import User
+
 # from ../../models import Persona
 
 from django import forms
@@ -25,14 +27,7 @@ class VenderProductoform(forms.Form):
         (2,'Electrodomestico'),
         (3,'Muebles'),
     )
-    titulo = forms.CharField(
-            label='Título', 
-            max_length=50,
-            widget=forms.TextInput(
-                    attrs={'class':'form-control',
-                        'placeholder':'Titulo'}
-                    )
-        )
+
     descripcion = forms.CharField(
         label='Descripción',
         max_length=500,
@@ -154,6 +149,7 @@ class Registrarform(forms.Form):
             self.cleaned_data.get('username'),
             self.cleaned_data.get('email'),
             self.cleaned_data.get('password'),
+            self.cleaned_data.get('calle'),
         )
         
         
@@ -186,10 +182,7 @@ class ProductoForm(forms.ModelForm):
             label='Precio',           
             widget=forms.NumberInput(attrs={'min': '0', 'class': 'form-control'})
         )
-    titulo =forms.CharField(
-            label='Descripción',           
-            widget=forms.Textarea(attrs={'rows': 5,'class':'form-control'})
-        )
+
    
     """Se utiliza ModelChoiceField para poder realizar un filtrado de lo que
     quiero mostrar en el selector"""
@@ -211,6 +204,6 @@ class ProductoForm(forms.ModelForm):
         
     class Meta:
         model=Producto
-        fields=['titulo','desc_producto','precio', 'foto','clasificacion', 'estado']
+        fields=['desc_producto','precio', 'foto','clasificacion', 'estado']
 
             

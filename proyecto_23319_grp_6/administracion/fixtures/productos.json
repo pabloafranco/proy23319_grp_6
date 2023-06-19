@@ -1,0 +1,67 @@
+[
+{
+    "model": "administracion.producto",
+    "pk": 13,
+    "fields": {
+      "desc_producto": "Microondas pura potencia",
+      "estado": "A",
+      "clasificacion": 3,
+      "persona": 1,
+      "fecha_alta": "2023-05-20",
+      "foto": "image/microondas.jpg",
+      "precio": 3500
+    }
+  },
+  {
+    "model": "administracion.producto",
+    "pk": 14,
+    "fields": {
+      "desc_producto": "Heladera Philco Predicta PHSB482XT negra con freezer 482L 220V",
+      "estado": "A",
+      "clasificacion": 2,
+      "persona": 1,
+      "fecha_alta": "2023-05-20",
+      "foto": "image/heladera.jpg",
+      "precio": 2500
+    }
+  },
+  {
+    "model": "administracion.producto",
+    "pk": 15,
+    "fields": {
+      "desc_producto": "Computadoras Notebook Laptop Baratas Ssd 256gb 6gb Windows\r\nConexi�n wifi.\r\nCon puerto USB.",
+      "estado": "A",
+      "clasificacion": 2,
+      "persona": 1,
+      "fecha_alta": "2023-05-23",
+      "foto": "image/compu.png",
+      "precio": 189000
+    }
+  },
+  {
+    "model": "administracion.producto",
+    "pk": 16,
+    "fields": {
+      "desc_producto": "Nuevo celular",
+      "estado": "A",
+      "clasificacion": 14,
+      "persona": 1,
+      "fecha_alta": "2023-05-23",
+      "foto": "image/celular.jpg",
+      "precio": 15000
+    }
+  },
+  {
+    "model": "administracion.producto",
+    "pk": 17,
+    "fields": {
+      "desc_producto": "Otra computadora",
+      "estado": "A",
+      "clasificacion": 9,
+      "persona": 1,
+      "fecha_alta": "2023-05-23",
+      "foto": "image/compu_OZg3kiv.png",
+      "precio": 1222
+    }
+  }
+]

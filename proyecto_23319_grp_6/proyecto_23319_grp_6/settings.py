@@ -36,6 +36,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'users',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -57,6 +58,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'proyecto_23319_grp_6.urls'
+
+
+#Definimos nuestro modelo de usuario para la atentitacion, para que django use este modelo
+AUTH_USER_MODEL = 'users.User'
 
 TEMPLATES = [
     {

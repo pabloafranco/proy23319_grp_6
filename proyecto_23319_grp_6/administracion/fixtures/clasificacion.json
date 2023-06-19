@@ -1,0 +1,98 @@
+[
+{
+  "model": "administracion.clasificacion",
+  "pk": 2,
+  "fields": {
+    "desc_clasificacion": "Electronica",
+    "fecha_alta": "2023-05-19"
+  }
+},
+{
+  "model": "administracion.clasificacion",
+  "pk": 3,
+  "fields": {
+    "desc_clasificacion": "Peque�os electrodomesticos",
+    "fecha_alta": "2023-05-19"
+  }
+},
+{
+  "model": "administracion.clasificacion",
+  "pk": 4,
+  "fields": {
+    "desc_clasificacion": "Muebles de oficina",
+    "fecha_alta": "2023-05-19"
+  }
+},
+{
+  "model": "administracion.clasificacion",
+  "pk": 5,
+  "fields": {
+    "desc_clasificacion": "Maquinaria Industrial",
+    "fecha_alta": "2023-05-20"
+  }
+},
+{
+  "model": "administracion.clasificacion",
+  "pk": 6,
+  "fields": {
+    "desc_clasificacion": "Maquinaria Industrial",
+    "fecha_alta": "2023-05-20"
+  }
+},
+{
+  "model": "administracion.clasificacion",
+  "pk": 7,
+  "fields": {
+    "desc_clasificacion": "Veamos que pasa",
+    "fecha_alta": "2023-05-20"
+  }
+},
+{
+  "model": "administracion.clasificacion",
+  "pk": 8,
+  "fields": {
+    "desc_clasificacion": "Veamos que pasa",
+    "fecha_alta": "2023-05-20"
+  }
+},
+{
+  "model": "administracion.clasificacion",
+  "pk": 9,
+  "fields": {
+    "desc_clasificacion": "Otra maquinaria",
+    "fecha_alta": "2023-05-20"
+  }
+},
+{
+  "model": "administracion.clasificacion",
+  "pk": 10,
+  "fields": {
+    "desc_clasificacion": "Clasificacion 2",
+    "fecha_alta": "2023-05-20"
+  }
+},
+{
+  "model": "administracion.clasificacion",
+  "pk": 11,
+  "fields": {
+    "desc_clasificacion": "Clasificacion 2",
+    "fecha_alta": "2023-05-20"
+  }
+},
+{
+  "model": "administracion.clasificacion",
+  "pk": 13,
+  "fields": {
+    "desc_clasificacion": "Clasificacion 4 nueva",
+    "fecha_alta": "2023-05-20"
+  }
+},
+{
+  "model": "administracion.clasificacion",
+  "pk": 14,
+  "fields": {
+    "desc_clasificacion": "Muebles de Oficina",
+    "fecha_alta": "2023-05-23"
+  }
+}
+]

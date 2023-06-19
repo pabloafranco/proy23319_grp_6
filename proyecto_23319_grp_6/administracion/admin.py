@@ -2,9 +2,10 @@ from django.contrib import admin
 
 # Register your models here.
 from django.contrib import admin
-from administracion.models import Persona, Clasificacion, Producto, Cab_Compras,Det_Compras
+from administracion.models import Clasificacion, Producto, Cab_Compras,Det_Compras
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin, GroupAdmin
+from users.models import User
 
 # # Registro por defecto al admin de Django
 # admin.site.register(Persona)
@@ -14,9 +15,9 @@ from django.contrib.auth.admin import UserAdmin, GroupAdmin
 
 # Personalizacion de visualizacion de personas
 class PersonaAdmin(admin.ModelAdmin):
-    list_display_links = ('user',)
-    list_display =  ('user','email', 'telefono','provincia','calle','codigo_postal','foto')
-    list_editable = ('email', 'telefono','provincia','calle','codigo_postal','foto')
+    list_display_links = ('email',)
+    list_display =  ('email', 'telefono','provincia','calle','codigo_postal','foto')
+    list_editable = ( 'telefono','provincia','calle','codigo_postal','foto')
     list_filter = ('provincia', 'codigo_postal')
     search_fields = ('email',)
 
@@ -80,7 +81,7 @@ class ComprasAdmin(admin.ModelAdmin):
 
 #registros de modelos en Admin personalizado
 sitio_admin = ComprasSite(name='comprassite')
-sitio_admin.register(Persona,PersonaAdmin)
+sitio_admin.register(User,PersonaAdmin)
 sitio_admin.register(Clasificacion,ClasificacionAdmin)
 sitio_admin.register(Producto,ProductoAdmin)
 sitio_admin.register(Cab_Compras, ComprasAdmin)
