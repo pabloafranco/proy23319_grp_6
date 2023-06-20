@@ -18,7 +18,7 @@ body {
     font-family: 'Open Sans', Arial, Helvetica, sans-serif;
     font-size: 18px;
     overflow-x: hidden;
-    background-color: #1E5050;
+    /*background-color: #1E5050;*/
 }
 
 ul {
@@ -367,7 +367,7 @@ h2 { margin-top: 0; }
 
   
 :root {
---max: 84rem
+--max: 18rem
 }
 
 body {
