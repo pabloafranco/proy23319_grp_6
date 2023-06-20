@@ -24,4 +24,5 @@ urlpatterns = [
     #path('admin/', admin.site.urls),
     path('admin/', sitio_admin.urls),
     path('', include('publica.urls')),
+    path('agregar/', include('users.urls')),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

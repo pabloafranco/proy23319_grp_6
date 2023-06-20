@@ -148,8 +148,7 @@ class Registrarform(forms.Form):
         return User.objects.create_user(
             self.cleaned_data.get('username'),
             self.cleaned_data.get('email'),
-            self.cleaned_data.get('password'),
-            self.cleaned_data.get('calle'),
+            self.cleaned_data.get('password')
         )
         
         
