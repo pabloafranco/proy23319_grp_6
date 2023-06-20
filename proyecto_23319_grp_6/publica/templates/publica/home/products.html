@@ -66,6 +66,8 @@
                                     <form action = "{% url 'users:add'  %}"  method="post" enctype="multipart/form-data"> 
                                     {% csrf_token %}
                                     <div class="form-group">
+                                        <input type="hidden" name="precio" value="{{curso.precio}}">
+                                        <input type="hidden" name="id" value="{{curso.id}}">
                                         <label for="email" class="col-form-label">Email:</label>
                                         <textarea class="form-control" name="email" id="email">{{curso.persona.email}}</textarea>
                                     </div>

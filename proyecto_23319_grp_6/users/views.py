@@ -4,6 +4,8 @@ from django.shortcuts import redirect
 from django.conf import settings
 
 from django.core.mail import send_mail
+from administracion.models import Det_Compras, Cab_Compras
+from administracion.models import Producto
 
 #from django.contrib.auth.models import User
 from users.models import User
@@ -52,5 +54,31 @@ def add(request):
         fail_silently=False,
         html_message=mensaje_html
     )          
+    
+    """
+    class Cab_Compras(models.Model):
+    comprador = models.ForeignKey(User,on_delete=models.CASCADE)
+    fecha_compra = models.DateField(auto_now_add=True,verbose_name='Fecha de alta')
+
+    class Det_Compras(models.Model):
+    cabecera = models.ForeignKey(Cab_Compras,on_delete=models.CASCADE)
+    producto = models.ForeignKey(Producto,on_delete=models.CASCADE)
+    precioFinal = models.DecimalField(decimal_places=2, max_digits=10, verbose_name='Precio')
+    cantidad = models.IntegerField(verbose_name='Cantidad')
+    """     
+    cabecera = Cab_Compras.objects.create(comprador=request.user)
+    cabecera.save()
+    id=request.POST.get('id')
+    precio=request.POST.get('precio')
+    print(f'id: {id}')
+    print(f'precio: {precio}')
+    
+    producto=Producto.objects.get(pk=id)
+    detalle = Det_Compras.objects.create(cabecera_id=cabecera.id, cantidad=1, precioFinal=precio, producto=producto)
+    #detalle.producto=id
+    #detalle.cantidad = 1
+    #detalle.precioFinal=precio
+    detalle.save()
+    
 
     return redirect('detailProduct')         
