@@ -196,7 +196,8 @@ def logout_view(request):
     
 
 def productos_index(request):
-    productos = Producto.objects.all()
+    #productos = Producto.objects.all()
+    productos = Producto.objects.filter(persona_id=request.user.id)
     return render(request,'publica/productos/index.html',{'productos':productos})    
 
 def productos_nuevo(request):
