@@ -187,7 +187,11 @@ class ProductoForm(forms.ModelForm):
         ('I','Inactivo'),
         ('P','Pausado'),
     )
-    
+    titulo= forms.CharField(
+            label='Titulo',
+            widget=forms.TextInput(attrs={'class':'form-control'})
+
+    )
     desc_producto=forms.CharField(
             label='Descripción',           
             widget=forms.Textarea(attrs={'rows': 5,'class':'form-control'})
@@ -219,6 +223,6 @@ class ProductoForm(forms.ModelForm):
         
     class Meta:
         model=Producto
-        fields=['desc_producto','precio', 'foto','clasificacion', 'estado']
+        fields=['titulo','desc_producto','precio', 'foto','clasificacion', 'estado']
 
             
