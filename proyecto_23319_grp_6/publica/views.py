@@ -71,13 +71,15 @@ def productos_buscar(request):
     print(f'Search: {search}')
     if search:
         listado_cursos = Producto.objects.filter(desc_producto__contains=search)
+        titulo='Pagina de detalle de productos Filtrado'
     else:
         listado_cursos = Producto.objects.all()
+        titulo='Pagina de detalle de productos'
     
     print(f'listado_cursos: {listado_cursos}')
     
     method='paso por post'
-    titulo='Pagina de detalle de productos Filtrado'
+    
     fecha=datetime.now
     return render(request,'publica/home/products.html',{
         'titulo':titulo,
