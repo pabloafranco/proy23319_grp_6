@@ -63,30 +63,50 @@ def login_view(request):
 def homeLogIn(request, idUser):
     return HttpResponse(f"""Proyecto <h1>Django Home  Login {idUser} <h1>""")
 
+def productos_buscar(request):
+  
+    search = request.POST.get('search')
+    print(f'Search: {search}')
+    if search:
+        listado_cursos = Producto.objects.filter(desc_producto__contains=search)
+    else:
+        listado_cursos = Producto.objects.all()
+    
+    print(f'listado_cursos: {listado_cursos}')
+    
+    method='paso por post'
+    titulo='Pagina de detalle de productos Filtrado'
+    fecha=datetime.now
+    return render(request,'publica/home/products.html',{
+        'titulo':titulo,
+        'fecha':fecha,
+        'method':method,
+        'cursos':listado_cursos
+    })
 # con metodo get
 def detailProduct(request):
-    listado_cursos = [
-        {
-            'nombre':'NoteBook',
-            'descripcion':'I7 - 8gb RAM - Inter',
-            'categoria':'Tecnologia',
-        },
-        {
-            'nombre':'Heladera',
-            'descripcion':'NoFrost',
-            'categoria':'Electrodomesticos',
-        },
-        {
-            'nombre':'TV Smart LED',
-            'descripcion':'4K Philips',
-            'categoria':'Tecnologia',
-        },
-        {
-            'nombre':'Parlante WiFi',
-            'descripcion':'Parlante Sony',
-            'categoria':'Tecnologia',
-        },
-    ]
+    # listado_cursos = [
+    #     {
+    #         'nombre':'NoteBook',
+    #         'descripcion':'I7 - 8gb RAM - Inter',
+    #         'categoria':'Tecnologia',
+    #     },
+    #     {
+    #         'nombre':'Heladera',
+    #         'descripcion':'NoFrost',
+    #         'categoria':'Electrodomesticos',
+    #     },
+    #     {
+    #         'nombre':'TV Smart LED',
+    #         'descripcion':'4K Philips',
+    #         'categoria':'Tecnologia',
+    #     },
+    #     {
+    #         'nombre':'Parlante WiFi',
+    #         'descripcion':'Parlante Sony',
+    #         'categoria':'Tecnologia',
+    #     },
+    # ]
     listado_cursos = Producto.objects.all()
     
     method='paso por get'

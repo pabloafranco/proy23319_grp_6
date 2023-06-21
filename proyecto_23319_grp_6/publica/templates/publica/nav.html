@@ -33,8 +33,9 @@
           {%endif%}
             
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+        <form class="d-flex" action = "{% url 'productos_buscar'  %}"  method="post">
+          {% csrf_token %}
+          <input class="form-control me-2" name="search" type="search" placeholder="Buscar" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Buscar</button>
         </form>
       </div>
