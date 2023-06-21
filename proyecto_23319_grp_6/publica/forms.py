@@ -108,6 +108,10 @@ class Registrarform(forms.Form):
                             widget=forms.TextInput(attrs={'class': 'form-control',
                                                            'id': 'direccion'}))
 
+    telefono=forms.CharField(required=True, min_length=4, max_length=50, 
+                            label='Telefono', 
+                            widget=forms.TextInput(attrs={'class': 'form-control',
+                                                           'id': 'telefono'}))
     provincia=forms.CharField(required=False, max_length=50, 
                             label='Provincia', 
                             widget=forms.TextInput(attrs={'class': 'form-control',
@@ -144,12 +148,24 @@ class Registrarform(forms.Form):
         #En la clase hacemos la grabacion
         
         print(self)
+        user = User.objects.create_user(self.cleaned_data.get('username'),  self.cleaned_data.get('email'), self.cleaned_data.get('password'))
+
+        # At this point, user is a User object that has already been saved
+        # to the database. You can continue to change its attributes
+        # if you want to change other fields.
+        user.provincia = self.cleaned_data.get('provincia')
+        user.calle = self.cleaned_data.get('calle')
+        user.telefono = self.cleaned_data.get('telefono')
+        user.codigo_postal = self.cleaned_data.get('codigo_postal')
+        user.save()
         
-        return User.objects.create_user(
-            self.cleaned_data.get('username'),
-            self.cleaned_data.get('email'),
-            self.cleaned_data.get('password')
-        )
+        return user
+        
+        # return User.objects.create_user(
+        #     self.cleaned_data.get('username'),
+        #     self.cleaned_data.get('email'),
+        #     self.cleaned_data.get('password')
+        # )
         
         
         
