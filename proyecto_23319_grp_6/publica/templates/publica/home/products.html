@@ -16,22 +16,22 @@
     <h2 class="h1-responsive font-weight-bold text-center my-4">Productos disponibles</h2>
     <!--Section description-->
     <p class="text-center w-responsive mx-auto mb-5"></p>
-            {% if cursos|length > 0 %}
+            {% if productos|length > 0 %}
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
-                    {% for curso in cursos %}
+                    {% for producto in productos %}
                         <div class="col">
                             <div class="card shadow-sm">
                                 <div class="card-header">
-                                    <h3>{{curso.estado}}</h3>
+                                    <h3>{{producto.titulo}}</h3>
                                 </div>
                                <div class="card-body">
                                  
-                                    {% comment %} <img class="bd-placeholder-img card-img-top" width="100%" src="https://picsum.photos/id/{{ forloop.counter|add:500 }}/300/200" alt="{{curso.nombre}}"
+                                    {% comment %} <img class="bd-placeholder-img card-img-top" width="100%" src="https://picsum.photos/id/{{ forloop.counter|add:500 }}/300/200" alt="{{producto.nombre}}"
                                     width="20%"> {% endcomment %}
-                                    <img src="{{curso.foto.url}}" alt="{{curso.desc_producto}}" width="100%">
+                                    <img src="{{producto.foto.url}}" alt="{{producto.desc_producto}}" width="100%">
                                                                         
-                                    <p class="card-text">{{curso.desc_producto}}</p>
-                                    <small class="text-muted"> $ {{curso.precio}}</small>
+                                    <p class="card-text">{{producto.desc_producto}}</p>
+                                    <small class="text-muted"> $ {{producto.precio}}</small>
                                     <div class="d-flex justify-content-between align-items-center">
                                       
                                        
@@ -40,7 +40,7 @@
                                 <div class="card-footer text-muted">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Comprar</button>
-                                    
+                                      
                                     </div>
                                 </div>
                             </div>
@@ -64,7 +64,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="message-text" class="col-form-label">Producto:</label>
-                                        <textarea class="form-control" id="message-text">{{curso.desc_producto}}</textarea>
+                                        <textarea class="form-control" id="message-text">{{producto.desc_producto}}</textarea>
                                     </div>
                                     </form>
                                 </div>

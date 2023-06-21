@@ -185,7 +185,7 @@ class ProductoForm(forms.ModelForm):
             widget=forms.NumberInput(attrs={'min': '0', 'class': 'form-control'})
         )
     titulo =forms.CharField(
-            label='Descripción',           
+            label='Titulo',           
             widget=forms.Textarea(attrs={'rows': 5,'class':'form-control'})
         )
    

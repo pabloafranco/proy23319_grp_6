@@ -61,29 +61,8 @@ def homeLogIn(request, idUser):
 
 # con metodo get
 def detailProduct(request):
-    listado_cursos = [
-        {
-            'nombre':'NoteBook',
-            'descripcion':'I7 - 8gb RAM - Inter',
-            'categoria':'Tecnologia',
-        },
-        {
-            'nombre':'Heladera',
-            'descripcion':'NoFrost',
-            'categoria':'Electrodomesticos',
-        },
-        {
-            'nombre':'TV Smart LED',
-            'descripcion':'4K Philips',
-            'categoria':'Tecnologia',
-        },
-        {
-            'nombre':'Parlante WiFi',
-            'descripcion':'Parlante Sony',
-            'categoria':'Tecnologia',
-        },
-    ]
-    listado_cursos = Producto.objects.all()
+    
+    listado_productos = Producto.objects.all()
     
     method='paso por get'
     titulo='Pagina de detalle de productos'
@@ -92,7 +71,7 @@ def detailProduct(request):
         'titulo':titulo,
         'fecha':fecha,
         'method':method,
-        'cursos':listado_cursos
+        'productos':listado_productos
     })
 # con metodo post
 # def saveUser(request):
