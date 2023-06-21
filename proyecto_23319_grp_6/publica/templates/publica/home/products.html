@@ -69,11 +69,11 @@
                                         <input type="hidden" name="precio" value="{{curso.precio}}">
                                         <input type="hidden" name="id" value="{{curso.id}}">
                                         <label for="email" class="col-form-label">Email:</label>
-                                        <textarea class="form-control" name="email" id="email">{{curso.persona.email}}</textarea>
+                                        <textarea readonly class="form-control" name="email" id="email">{{curso.persona.email}}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="descripcion" class="col-form-label">Producto:</label>
-                                        <textarea class="form-control" name="descripcion" id="descripcion">{{curso.desc_producto}}</textarea>
+                                        <textarea readonly class="form-control" name="descripcion" id="descripcion">{{curso.desc_producto}}</textarea>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
