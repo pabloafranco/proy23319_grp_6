@@ -13,10 +13,12 @@ from publica.forms import Registrarform
 from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate
+from django.views.generic.detail import DetailView
 
 
 #from django.contrib.auth.models import User
 from users.models import User
+from administracion.models import Producto
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
@@ -347,3 +349,11 @@ class ClasificacionDeleteView(DeleteView):
         return HttpResponseRedirect(self.get_success_url()) """
     
     
+def ProductoMirar(request, id): #id
+    try:
+        producto = Producto.objects.get(pk=id)
+    except Producto.DoesNotExist:
+        return render(request,'publica/productos/404_admin.html')
+
+ 
+    return render(request,'publica/productos/comprar.html',{'curso':producto})       

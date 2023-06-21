@@ -1,3 +1,5 @@
+from django.views.generic.detail import DetailView
+
 from django.shortcuts import render
 from django.contrib import messages
 from django.shortcuts import redirect
@@ -82,3 +84,4 @@ def add(request):
     
 
     return redirect('detailProduct')         
+

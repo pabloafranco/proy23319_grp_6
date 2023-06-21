@@ -1,0 +1,40 @@
+{% extends '../index.html' %}
+
+
+{% block content %}
+ <!-- Header-->
+ <div class="container">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Compra</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form action = "{% url 'users:add'  %}"  method="post" enctype="multipart/form-data"> 
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="hidden" name="precio" value="{{curso.precio}}">
+                <input type="hidden" name="id" value="{{curso.id}}">
+                <label for="email" class="col-form-label">Email:</label>
+                <textarea readonly class="form-control" name="email" id="email">{{curso.persona.email}}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="descripcion" class="col-form-label">Producto:</label>
+                <textarea readonly class="form-control" name="descripcion" id="descripcion">{{curso.desc_producto}}</textarea>
+            </div>
+            <div class="modal-footer">
+                {% comment %} <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button> {% endcomment %}
+                <a href="{% url 'detailProduct' %}" class="btn btn-secondary">Cancelar</a>        
+                <button type="submit" class="btn btn-primary">Aceptar</button>
+            </div>
+            </form>
+        </div>
+        </div>
+    </div>
+</div>
+
+{% endblock%}
