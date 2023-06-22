@@ -350,7 +350,7 @@ class ClasificacionDeleteView(DeleteView):
         self.object.soft_delete()  # Llamada al método soft_delete() del modelo
         return HttpResponseRedirect(self.get_success_url()) """
     
-    
+@login_required    
 def ProductoMirar(request, id): #id
     try:
         producto = Producto.objects.get(pk=id)
