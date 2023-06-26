@@ -1,16 +1,16 @@
 {% extends '../index.html' %}
 
-{% block titulo %}Eliminar clasificacion{% endblock%}
+{% block titulo %}Eliminar clasificación{% endblock%}
 
 {% block content %}
-<h1 class="mt-4">Clasificacion productos</h1>
+<h1 class="mt-4">Clasificación de productos</h1>
 <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">Eliminar Clasificacion</li>
+    <li class="breadcrumb-item active">Eliminar Clasificación</li>
 </ol>
 
 
 <div class="card">
-    <div class="card-header">Eliminacion de categoría</div>
+    <div class="card-header">Eliminación de categoría</div>
     <div class="card-body">
         <form method="post">{% csrf_token %}
             <p>Esta seguro que quiere eliminar la clasificacion "{{ object.nombre }}"?</p>
