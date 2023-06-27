@@ -77,6 +77,9 @@ class ComprasAdmin(admin.ModelAdmin):
     inlines = [
         DetalleInline,
     ]
+    list_display =  ('comprador','fecha_compra')
+    list_filter = ('comprador',)
+    search_fields = ('comprador',)
 
 
 #registros de modelos en Admin personalizado

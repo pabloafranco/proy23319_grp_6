@@ -51,7 +51,11 @@ def login_view(request):
             # Le genero una sesion al usuario
             login(request, user)
             messages.success(request,"Bienvenido {}".format(username))
-            return redirect('detailProduct')
+            
+            if request.GET.get('next'):
+                return HttpResponseRedirect(request.GET['next'])
+            else:
+                return redirect('detailProduct')
         else:
             messages.error(request,"Usuario o contraseña no validos")
             
@@ -71,7 +75,7 @@ def productos_buscar(request):
     print(f'Search: {search}')
     if search:
         listado_cursos = Producto.objects.filter(desc_producto__contains=search)
-        titulo='Pagina de detalle de productos Filtrado'
+        titulo=f'Pagina de detalle de productos (filtrando: {search})'
     else:
         listado_cursos = Producto.objects.all()
         titulo='Pagina de detalle de productos'

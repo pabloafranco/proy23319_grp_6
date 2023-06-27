@@ -8,6 +8,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 from administracion.models import Det_Compras, Cab_Compras
 from administracion.models import Producto
+from django.contrib.auth.decorators import login_required
 
 #from django.contrib.auth.models import User
 from users.models import User
@@ -17,7 +18,7 @@ import environ
 import os
 
     
-    
+@login_required    
 def add(request):
     
     env = environ.Env()
